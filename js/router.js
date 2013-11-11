@@ -3,7 +3,15 @@
 //   このテンプレートで何のmodelを使うかを決める
 Todos.Router.map(function(){
 	this.resource('todos', {path: '/'}, function(){
-		// child routes
+		// 第3引数を追加したタイミングで（中身が空でも）Routerの動きが変わる
+		//   Routes todos → todos.index
+		//                → todos.active
+		//                → todos.completed
+		//   Template todos(common) -> todos/index
+		//            {{outlet}} <---------|
+		//
+		// http://emberjs.com/guides/concepts/naming-conventions/
+		// 第3引数を追加することでネストしたURLを表現することができる		
 	});
 });
 
