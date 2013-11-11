@@ -4,15 +4,6 @@
 //   Templateからみるとあたかもmodelの配列のようにふるまっているように見える
 //   ユーザーからの操作を受け取って何かをするという働きもある
 Todos.TodosController = Ember.ArrayController.extend({
-	remaining: function(){
-		// 件数はlengthプロパティの値になる
-		return this.filterBy('isCompleted', false).get('length');
-	}.property('@each.isCompleted'),  // todosコントローラーの各要素に対してisCompletedが変わった時に発火する
-	// それぞれはオブジェクト - カンマ区切りで並べている ... それぞれを何と捉えておけばよいのだろう
-	inflection: function(){
-		var remaining = this.get('remaining');
-		return remaining === 1 ? 'item' : 'items';
-	}.property('remaining'),
 	actions: {
 		createTodo: function(){
 			var title = this.get('newTitle');
@@ -29,5 +20,14 @@ Todos.TodosController = Ember.ArrayController.extend({
 	        // saveしたタイミングで(controllerの値が変わるから?）eachが拾って画面に反映される
 	        todo.save();
 		}
-	}
+	},
+	remaining: function(){
+		// 件数はlengthプロパティの値になる
+		return this.filterBy('isCompleted', false).get('length');
+	}.property('@each.isCompleted'),  // todosコントローラーの各要素に対してisCompletedが変わった時に発火する
+	// それぞれはオブジェクト - カンマ区切りで並べている ... それぞれを何と捉えておけばよいのだろう
+	inflection: function(){
+		var remaining = this.get('remaining');
+		return remaining === 1 ? 'item' : 'items';
+	}.property('remaining'),
 });
