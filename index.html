@@ -27,6 +27,7 @@
             <!-- // edit-todo: 自分で作成したView -->
             <!-- // actionはtodo controllerに書く -->
             <!-- // insert-newline: Enter-->
+            <!-- // TodoControllerにtitleがないならmodelのtitleを見に行くようになっている -->
             {{edit-todo class="edit" value=title focus-out="acceptChanges" insert-newline="acceptChanges"}}
           {{else}}
             {{input type="checkbox" checked=isCompleted class="toggle"}}

@@ -6,11 +6,14 @@ Todos.TodoController = Ember.ObjectController.extend({
 		acceptChanges: function(){
 			// すでにtitleに値がbindされている
 			this.set('isEditing', false);
-			// Ember.isEmptyとは
-			if(Ember.isEmpty(this.get('model.title'))) {
+			// Ember.isEmptyとは - 便利メソッドの一つ
+			//   空と判断できるものはすべてtrueとなる
+			var model = this.get('model');
+			// this.get('model.title');
+			if(Ember.isEmpty(model.get('title'))) {
 				this.send('removeTodo');
 			} else {
-			    this.get('model').save();	
+			    model.save();	
 			}
 		}
 	},
