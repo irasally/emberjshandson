@@ -20,7 +20,7 @@ Todos.Todo.FIXTURES = [
 	},
 	{
 		id: 4,
-		title: '日本語',
+		title: 'にほんご',
 		isCompleted: false
 	}
 ];
