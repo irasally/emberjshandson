@@ -14,6 +14,7 @@ Todos.Router.map(function(){
 		// 第3引数を追加することでネストしたURLを表現することができる
 		// resourceとroute: routeの下には何かをぶら下げることはできない
 		this.route('active');
+		this.route('completed');
 	});
 });
 
@@ -40,6 +41,16 @@ Todos.TodosActiveRoute = Ember.Route.extend({
 	renderTemplate: function(controller){
 		// [template名, 使用するController(TodosActiveController)=>存在しないのでDefaultController]
 		// 第二引数は省略してもよい
+		this.render('todos/index', {controller: controller});
+	}
+});
+Todos.TodosCompletedRoute = Ember.Route.extend({
+	model: function(){
+		return this.store.filter('todo', function(todo) {
+			return todo.get('isCompleted');			
+		});
+	},
+	renderTemplate: function(controller){
 		this.render('todos/index', {controller: controller});
 	}
 });
