@@ -7,8 +7,8 @@ Todos.TodosController = Ember.ArrayController.extend({
 	remaining: function(){
 		// 件数はlengthプロパティの値になる
 		return this.filterBy('isCompleted', false).get('length');
-	}.property('@each.isCompleted'),  // @eachとは
-	// なぜ最後がセミコロン？
+	}.property('@each.isCompleted'),  // todosコントローラーの各要素に対してisCompletedが変わった時に発火する
+	// それぞれはオブジェクト - カンマ区切りで並べている ... それぞれを何と捉えておけばよいのだろう
 	inflection: function(){
 		var remaining = this.get('remaining');
 		return remaining === 1 ? 'item' : 'items';
