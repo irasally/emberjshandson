@@ -22,7 +22,7 @@
         <!-- falseの時にimcompletedにする方法: isCompleted:completed:incompleted -->
         <!-- falseのだけimcompletedにする方法: isCompleted::incompleted -->
         <!-- htmlの構造を壊さないようにするためにbind-attrを使っている -->
-        {{#each}}
+        {{#each itemController="todo"}}
         <li {{bind-attr class="isCompleted:completed"}}>
           {{input type="checkbox" checked=isCompleted class="toggle"}}
           <label>{{title}}</label><button class="destroy"></button>
@@ -67,5 +67,6 @@
     <script src="js/router.js"></script>
     <script src="js/models/todo.js"></script>
     <script src="js/controllers/todos_controller.js"></script>
+    <script src="js/controllers/todo_controller.js"></script>
   </body>
 </html>
