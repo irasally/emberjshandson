@@ -4,14 +4,16 @@
 Todos.Router.map(function(){
 	this.resource('todos', {path: '/'}, function(){
 		// 第3引数を追加したタイミングで（中身が空でも）Routerの動きが変わる
-		//   Routes todos → todos.index
+		//   Routes todos → todos.index ... dafault
 		//                → todos.active
 		//                → todos.completed
 		//   Template todos(common) -> todos/index
 		//            {{outlet}} <---------|
 		//
 		// http://emberjs.com/guides/concepts/naming-conventions/
-		// 第3引数を追加することでネストしたURLを表現することができる		
+		// 第3引数を追加することでネストしたURLを表現することができる
+		// resourceとroute: routeの下には何かをぶら下げることはできない
+		this.route('active');
 	});
 });
 
@@ -25,7 +27,19 @@ Todos.TodosRoute = Ember.Route.extend({
 });
 // Child routes
 Todos.TodosIndexRoute = Ember.Route.extend({
-	model:function(){
+	model: function(){
 		return this.modelFor(('todos'));
+	}
+});
+Todos.TodosActiveRoute = Ember.Route.extend({
+	model: function(){
+		return this.store.filter('todo', function(todo) {
+			return !todo.get('isCompleted');			
+		});
+	},
+	renderTemplate: function(controller){
+		// [template名, 使用するController(TodosActiveController)=>存在しないのでDefaultController]
+		// 第二引数は省略してもよい
+		this.render('todos/index', {controller: controller});
 	}
 });
