@@ -4,6 +4,15 @@
 //   Templateからみるとあたかもmodelの配列のようにふるまっているように見える
 //   ユーザーからの操作を受け取って何かをするという働きもある
 Todos.TodosController = Ember.ArrayController.extend({
+	remaining: function(){
+		// 件数はlengthプロパティの値になる
+		return this.filterBy('isCompleted', false).get('length');
+	}.property('@each.isCompleted'),  // @eachとは
+	// なぜ最後がセミコロン？
+	inflection: function(){
+		var remaining = this.get('remaining');
+		return remaining === 1 ? 'item' : 'items';
+	}.property('remaining'),
 	actions: {
 		createTodo: function(){
 			var title = this.get('newTitle');
