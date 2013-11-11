@@ -2,6 +2,16 @@ Todos.TodoController = Ember.ObjectController.extend({
 	actions: {
 		editTodo: function(){
 			this.set('isEditing', true);
+		},
+		acceptChanges: function(){
+			// すでにtitleに値がbindされている
+			this.set('isEditing', false);
+			// Ember.isEmptyとは
+			if(Ember.isEmpty(this.get('model.title'))) {
+				this.send('removeTodo');
+			} else {
+			    this.get('model').save();	
+			}
 		}
 	},
 	// key:"isCompleted" value: propertyがgetの時はundefined, setの時は値が入ってくる

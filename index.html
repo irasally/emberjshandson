@@ -17,17 +17,20 @@
 
       <section id="main">
         <ul id="todo-list">
-        <!-- // #each thisの省略 thisはtodo modelの中身1件になる...(不思議-->
-        <!-- htmlの構造を壊さないようにするためにbind-attrを使っている -->
-        <!-- falseの時にimcompletedにする方法: isCompleted:completed:incompleted -->
-        <!-- falseのだけimcompletedにする方法: isCompleted::incompleted -->
-        <!-- htmlの構造を壊さないようにするためにbind-attrを使っている -->
+        <!-- // #each thisの省略 this(Array)からはtodo modelの中身1件を取出して処理-->
         {{#each itemController="todo"}}
+        <!-- // htmlの構造を壊さないようにするためにbind-attrを使っている -->
+        <!-- //    falseの時にimcompletedにする方法: isCompleted:completed:incompleted -->
+        <!-- //    falseのだけimcompletedにする方法: isCompleted::incompleted -->
         <li {{bind-attr class="isCompleted:completed isEditing:editing"}}>
           {{#if isEditing}}
-            <input class="edit">
+            <!-- // edit-todo: 自分で作成したView -->
+            <!-- // actionはtodo controllerに書く -->
+            <!-- // insert-newline: Enter-->
+            {{edit-todo class="edit" value=title focus-out="acceptChanges" insert-newline="acceptChanges"}}
           {{else}}
             {{input type="checkbox" checked=isCompleted class="toggle"}}
+            <!-- action helper // 任意の要素に対してactionを発生させる場合に使う cf) input helper -->
             <label {{action "editTodo" on="doubleClick"}}>{{title}}</label><button class="destroy"></button>
           {{/if}}
         </li>
@@ -72,5 +75,6 @@
     <script src="js/models/todo.js"></script>
     <script src="js/controllers/todos_controller.js"></script>
     <script src="js/controllers/todo_controller.js"></script>
+    <script src="js/views/edit_todo_view.js"></script>
   </body>
 </html>
