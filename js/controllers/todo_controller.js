@@ -12,6 +12,8 @@ Todos.TodoController = Ember.ObjectController.extend({
 			// this.get('model.title');
 			if(Ember.isEmpty(model.get('title'))) {
 				// これうまく動いていないっぽい（そのあとの動きがうまくいかない） >> emberのbug?
+				// chrome only? 
+				// focus-out と insert-newline それぞれで発火している??
 				this.send('removeTodo');
 			} else {
 			    model.save();	
@@ -20,7 +22,7 @@ Todos.TodoController = Ember.ObjectController.extend({
 		removeTodo: function(){
 			var todo = this.get('model');
 			todo.deleteRecord();
-			todo.save();
+			todo.save(); // saveしないとember的には消えているがdatastoreからは消えていない状態になる
 		}
 	},
 	// key:"isCompleted" value: propertyがgetの時はundefined, setの時は値が入ってくる
