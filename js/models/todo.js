@@ -21,6 +21,6 @@ Todos.Todo.FIXTURES = [
 	{
 		id: 4,
 		title: 'にほんご',
-		isCompleted: false
+		isCompleted: true
 	}
 ];
