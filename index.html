@@ -32,7 +32,7 @@
           {{else}}
             {{input type="checkbox" checked=isCompleted class="toggle"}}
             <!-- action helper // 任意の要素に対してactionを発生させる場合に使う cf) input helper -->
-            <label {{action "editTodo" on="doubleClick"}}>{{title}}</label><button class="destroy"></button>
+            <label {{action "editTodo" on="doubleClick"}}>{{title}}</label><button {{action "removeTodo"}} class="destroy"></button>
           {{/if}}
         </li>
         {{/each}}

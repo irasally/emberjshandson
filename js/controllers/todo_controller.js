@@ -11,10 +11,16 @@ Todos.TodoController = Ember.ObjectController.extend({
 			var model = this.get('model');
 			// this.get('model.title');
 			if(Ember.isEmpty(model.get('title'))) {
+				// これうまく動いていないっぽい（そのあとの動きがうまくいかない） >> emberのbug?
 				this.send('removeTodo');
 			} else {
 			    model.save();	
 			}
+		},
+		removeTodo: function(){
+			var todo = this.get('model');
+			todo.deleteRecord();
+			todo.save();
 		}
 	},
 	// key:"isCompleted" value: propertyがgetの時はundefined, setの時は値が入ってくる
