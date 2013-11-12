@@ -14,7 +14,7 @@ Todos.Todo.FIXTURES = [
 		id: 2,
 		title: '...',
 		isCompleted: false,
-		dueDate: new Date(2013, 11, 01)
+		dueDate: new Date(2012, 11, 01)
 	},
 	{
 		id: 3,

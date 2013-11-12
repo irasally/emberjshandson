@@ -60,12 +60,9 @@ Todos.TodoController = Ember.ObjectController.extend({
 
 	formattedDueDate: function(){
 		var dueDate = this.get('model').get('dueDate');
-		console.log(dueDate);
 		if(dueDate) {
-			console.log(true);
 			return moment(dueDate).format(this.get('format'));
 		} else {
-			console.log(false);
 			return '----/--/--';
 		}
 	}.property('model.dueDate'),
@@ -73,4 +70,10 @@ Todos.TodoController = Ember.ObjectController.extend({
 	isEditing: function(){
 		return !!this.get('isTitleEditing') || !!this.get('isDueDateEditing')
 	}.property('isTitleEditing', 'isDueDateEditing'),
+
+	isExpired: function(){
+		var dueDate = this.get('model').get('dueDate');
+		console.log(moment().isAfter(dueDate));
+		return moment().isAfter(dueDate);
+	}.property('model.dueDate'),
 });

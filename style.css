@@ -257,9 +257,14 @@ label[for='toggle-all'] {
 	padding: 15px 15px 5px 15px;
 }
 
-#todo-list li label.due-date{
+#todo-list li label.due-date {
 	padding: 0px 15px 15px 15px;
 	font-size: 8pt;
+}
+
+#todo-list li label.exprired {
+	color: #de3428;
+	font-weight: bold;
 }
 
 #todo-list li.completed label {
