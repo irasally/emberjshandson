@@ -25,6 +25,7 @@ Todos.TodoController = Ember.ObjectController.extend({
 			todo.save(); // saveしないとember的には消えているがdatastoreからは消えていない状態になる
 		}
 	},
+	
 	// key:"isCompleted" value: propertyがgetの時はundefined, setの時は値が入ってくる
 	isCompleted: function(key, value){
 		// thisはtodo一つ(Item)
