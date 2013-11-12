@@ -33,24 +33,28 @@ Todos.TodosIndexRoute = Ember.Route.extend({
 	}
 });
 Todos.TodosActiveRoute = Ember.Route.extend({
+	// ソートキーが定義されたtodosIndexコントローラを使う
+	controllerName: 'todosIndex',
 	model: function(){
 		return this.store.filter('todo', function(todo) {
 			return !todo.get('isCompleted');			
 		});
 	},
-	renderTemplate: function(controller){
+	renderTemplate: function(){
 		// [template名, 使用するController(TodosActiveController)=>存在しないのでDefaultController]
 		// 第二引数は省略してもよい
-		this.render('todos/index', {controller: controller});
+		this.render('todos/index');
 	}
 });
 Todos.TodosCompletedRoute = Ember.Route.extend({
+	// ソートキーが定義されたtodosIndexコントローラを使う
+	controllerName: 'todosIndex',
 	model: function(){
 		return this.store.filter('todo', function(todo) {
 			return todo.get('isCompleted');			
 		});
 	},
-	renderTemplate: function(controller){
-		this.render('todos/index', {controller: controller});
+	renderTemplate: function(){
+		this.render('todos/index');
 	}
 });
