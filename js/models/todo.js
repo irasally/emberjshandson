@@ -1,7 +1,15 @@
 Todos.Todo = DS.Model.extend({
 	title: DS.attr('string'),
 	isCompleted: DS.attr('boolean'),
-	dueDate: DS.attr()
+	dueDate: DS.attr(),
+	hasDueDate: function(){
+		// 日付未設定のものが後ろに来るようにする
+		if(!!this.get('dueDate')){
+			return -1;
+		} else {
+			return 99999999;
+		}
+	}.property('model.dueDate')
 });
 Todos.Todo.FIXTURES = [
 	{
