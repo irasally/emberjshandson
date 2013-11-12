@@ -29,12 +29,14 @@ Todos.TodosController = Ember.ArrayController.extend({
 	},
 
 	remainingChanged: function() {
-		var title = "Ember.js • TodoMVC";
-		if(this.get('remaining') > 0){
-			title = "(" + this.get('remaining') + ") " + title; 
+		var remaining = this.get('remaining');
+		var title;
+		if(remaining){
+			title = "(%@) Ember.js • TodoMVC".fmt(remaining); 
+		} else {
+			title = "Ember.js • TodoMVC"; 
 		}
-		// タイトルを変える
-        document.title = title;
+        window.document.title = title;
     }.observes('remaining').on('init'),
 
 	remaining: function(){
