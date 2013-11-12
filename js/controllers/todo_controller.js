@@ -1,8 +1,12 @@
 Todos.TodoController = Ember.ObjectController.extend({
 	isTitleEditing: false,
+	isDueDateEditing: false,
 	actions: {
 		editTitle: function(){
 			this.set('isTitleEditing', true);
+		},
+		editDueDate: function(){
+			this.set('isDueDateEditing', true);
 		},
 		saveTitle: function(){
 			// すでにtitleに値がbindされている
@@ -47,5 +51,9 @@ Todos.TodoController = Ember.ObjectController.extend({
 		if(dueDate) {
 			return moment(dueDate).format(this.get('format'));
 		}
-	}.property('model.dueDate')
+	}.property('model.dueDate'),
+
+	isEditing: function(){
+		return !!this.get('isTitleEditing') || !!this.get('isDueDateEditing')
+	}.property('isTitleEditing', 'isDueDateEditing'),
 });

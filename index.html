@@ -56,20 +56,25 @@
         <!-- // htmlの構造を壊さないようにするためにbind-attrを使っている -->
         <!-- //    falseの時にimcompletedにする方法: isCompleted:completed:incompleted -->
         <!-- //    falseのだけimcompletedにする方法: isCompleted::incompleted -->
-          <li {{bind-attr class="isCompleted:completed isTitleEditing:editing"}}>
+          <li {{bind-attr class="isCompleted:completed isEditing:editing"}}>
             {{#if isTitleEditing}}
-            <!-- // edit-todo: 自分で作成したView -->
-            <!-- // actionはtodo controllerに書く -->
-            <!-- // insert-newline: Enter-->
-            <!-- // TodoControllerにtitleがないならmodelのtitleを見に行くようになっている -->
+              <!-- // edit-todo: 自分で作成したView -->
+              <!-- // actionはtodo controllerに書く -->
+              <!-- // insert-newline: Enter-->
+              <!-- // TodoControllerにtitleがないならmodelのtitleを見に行くようになっている -->
               {{edit-title class="edit" value=title focus-out="saveTitle" insert-newline="saveTitle"}}
-              <label class="due-date">Due: {{formattedDueDate}}</label>
+              <label class="due-date" {{action "editDueDate" on="doubleClick"}}>Due: {{formattedDueDate}}</label>
             {{else}}
-              {{input type="checkbox" checked=isCompleted class="toggle"}}
-              <!-- action helper // 任意の要素に対してactionを発生させる場合に使う cf) input helper -->
-              <label class="title" {{action "editTitle" on="doubleClick"}}>{{title}}</label>
-              <label class="due-date">Due: {{formattedDueDate}}</label>
-              <button {{action "removeTodo"}} class="destroy"></button>
+              {{#if isDueDateEditing}}
+                <label class="title" {{action "editTitle" on="doubleClick"}}>{{title}}</label>
+                {{edit-due-date class="edit date" value=formattedDueDate}}
+              {{else}}
+                {{input type="checkbox" checked=isCompleted class="toggle"}}
+                <!-- action helper // 任意の要素に対してactionを発生させる場合に使う cf) input helper -->
+                <label class="title" {{action "editTitle" on="doubleClick"}}>{{title}}</label>
+                <label class="due-date" {{action "editDueDate" on="doubleClick"}}>Due: {{formattedDueDate}}</label>
+                <button {{action "removeTodo"}} class="destroy"></button>
+              {{/if}}
             {{/if}}
           </li>
         {{/each}}
@@ -87,5 +92,6 @@
     <script src="js/controllers/todos_controller.js"></script>
     <script src="js/controllers/todo_controller.js"></script>
     <script src="js/views/edit_title_view.js"></script>
+    <script src="js/views/edit_duedate_view.js"></script>
   </body>
 </html>

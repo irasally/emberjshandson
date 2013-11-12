@@ -201,6 +201,10 @@ label[for='toggle-all'] {
 	margin: 0 0 0 43px;
 }
 
+#todo-list li.editing .date {
+	font-size: 12px;
+}
+
 #todo-list li.editing .view {
 	display: none;
 }
