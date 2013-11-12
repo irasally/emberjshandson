@@ -1,6 +1,7 @@
 Todos.TodoController = Ember.ObjectController.extend({
 	isTitleEditing: false,
 	isDueDateEditing: false,
+	format: "YYYY/MM/DD",
 	actions: {
 		editTitle: function(){
 			this.set('isTitleEditing', true);
@@ -24,13 +25,24 @@ Todos.TodoController = Ember.ObjectController.extend({
 			    model.save();	
 			}
 		},
+		saveDueDate: function(){
+			this.set('isDueDateEditing', false);
+			var inputDate = this.get('formattedDueDate');
+			var dueDate = moment(inputDate, this.get('format'));
+			var model = this.get('model');
+			if(dueDate.isValid()){
+			    model.set('dueDate', moment(inputDate)._d);
+			} else {
+				model.set('dueDate', null);
+			}
+			model.save();
+		},
 		removeTodo: function(){
 			var todo = this.get('model');
 			todo.deleteRecord();
 			todo.save(); // saveしないとember的には消えているがdatastoreからは消えていない状態になる
 		}
 	},
-	format: "YYYY/MM/DD",
 	// key:"isCompleted" value: propertyがgetの時はundefined, setの時は値が入ってくる
 	isCompleted: function(key, value){
 		// thisはtodo一つ(Item)
@@ -48,8 +60,13 @@ Todos.TodoController = Ember.ObjectController.extend({
 
 	formattedDueDate: function(){
 		var dueDate = this.get('model').get('dueDate');
+		console.log(dueDate);
 		if(dueDate) {
+			console.log(true);
 			return moment(dueDate).format(this.get('format'));
+		} else {
+			console.log(false);
+			return '----/--/--';
 		}
 	}.property('model.dueDate'),
 

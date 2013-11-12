@@ -26,6 +26,5 @@ Todos.Todo.FIXTURES = [
 		id: 4,
 		title: 'にほんご',
 		isCompleted: false,
-		dueDate: new Date(2013, 12, 31)
 	}
 ];
