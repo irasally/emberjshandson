@@ -45,5 +45,11 @@ Todos.TodosController = Ember.ArrayController.extend({
 
 	completed: function(){
 		return this.filterBy('isCompleted', true).get('length');
-	}.property('@each.isCompleted') // @eachはスペシャルなもの
+	}.property('@each.isCompleted'), // @eachはスペシャルなもの
+
+	allAreDone: function(key, value){
+		// なぜ二重否定?
+		// everyBy:それぞれのプロパティの値が条件を満たすかをチェックする
+		return !!this.get('length') && this.everyBy('isCompleted', true);
+	}.property('@each.isCompleted')
 });
