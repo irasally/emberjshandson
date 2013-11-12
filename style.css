@@ -264,6 +264,7 @@ label[for='toggle-all'] {
 
 #todo-list li label.exprired {
 	color: #de3428;
+	background-color: #FEE;
 	font-weight: bold;
 }
 
