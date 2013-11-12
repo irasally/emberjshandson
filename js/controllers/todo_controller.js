@@ -1,11 +1,12 @@
 Todos.TodoController = Ember.ObjectController.extend({
+	isTitleEditing: false,
 	actions: {
-		editTodo: function(){
-			this.set('isEditing', true);
+		editTitle: function(){
+			this.set('isTitleEditing', true);
 		},
-		acceptChanges: function(){
+		saveTitle: function(){
 			// すでにtitleに値がbindされている
-			this.set('isEditing', false);
+			this.set('isTitleEditing', false);
 			// Ember.isEmptyとは - 便利メソッドの一つ
 			//   空と判断できるものはすべてtrueとなる
 			var model = this.get('model');
@@ -25,7 +26,6 @@ Todos.TodoController = Ember.ObjectController.extend({
 			todo.save(); // saveしないとember的には消えているがdatastoreからは消えていない状態になる
 		}
 	},
-	isEditing: false,
 	format: "YYYY/MM/DD",
 	// key:"isCompleted" value: propertyがgetの時はundefined, setの時は値が入ってくる
 	isCompleted: function(key, value){
