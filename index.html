@@ -58,12 +58,12 @@
         <!-- //    falseのだけimcompletedにする方法: isCompleted::incompleted -->
           <li {{bind-attr class="isCompleted:completed isEditing:editing"}}>
             {{#unless isEditing}}
-                {{input type="checkbox" checked=isCompleted class="toggle"}}
+              {{input type="checkbox" checked=isCompleted class="toggle"}}
             {{/unless}}
             {{#if isTitleEditing}}
               {{edit-title class="edit" value=title focus-out="saveTitle" insert-newline="saveTitle"}}
             {{else}}
-              <label class="title" {{action "editTitle" on="doubleClick"}}>{{title}}</label>
+              <label {{bind-attr class="isExpired:exprired :title" }} {{action "editTitle" on="doubleClick"}}>{{title}}</label>
             {{/if}}
             {{#if isDueDateEditing}}
               {{edit-due-date class="edit date" value=formattedDueDate  focus-out="saveDueDate" insert-newline="saveDueDate"}}

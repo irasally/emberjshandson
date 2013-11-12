@@ -76,8 +76,7 @@ Todos.TodoController = Ember.ObjectController.extend({
 	}.property('isTitleEditing', 'isDueDateEditing'),
 
 	isExpired: function(){
-		var dueDate = this.get('model').get('dueDate');
-		console.log(moment().isAfter(dueDate));
-		return moment().isAfter(dueDate);
-	}.property('model.dueDate'),
+		var model = this.get('model');
+		return !model.get('isCompleted') && moment().isAfter(model.get('dueDate'));
+	}.property('model.dueDate', 'model.isCompleted'),
 });
