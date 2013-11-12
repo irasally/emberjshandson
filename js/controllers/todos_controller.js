@@ -48,8 +48,14 @@ Todos.TodosController = Ember.ArrayController.extend({
 	}.property('@each.isCompleted'), // @eachはスペシャルなもの
 
 	allAreDone: function(key, value){
-		// なぜ二重否定?
-		// everyBy:それぞれのプロパティの値が条件を満たすかをチェックする
-		return !!this.get('length') && this.everyBy('isCompleted', true);
+		if(value === undefined){
+		    // なぜ二重否定?
+		    // everyBy:それぞれのプロパティの値が条件を満たすかをチェックする cf: evevryProperty
+		    return !!this.get('length') && this.everyBy('isCompleted', true);
+		} else {
+			this.setEach('isCompleted', value);
+			this.invoke('save')
+			return value;
+		}
 	}.property('@each.isCompleted')
 });
