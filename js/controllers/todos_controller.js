@@ -19,6 +19,12 @@ Todos.TodosController = Ember.ArrayController.extend({
 	        // FIXTURESアダプターがidを決めている/ デフォルトだとidはprimary keyとして扱われる
 	        // saveしたタイミングで(controllerの値が変わるから?）eachが拾って画面に反映される
 	        todo.save();
+		},
+		clearCompleted: function(){
+			var completed = this.filterBy('isCompleted', true);
+			// invoke: Eachしてそれぞれに対して処理するのと同じことができる
+			completed.invoke('deleteRecord');
+			completed.invoke('save');
 		}
 	},
 	remaining: function(){
@@ -30,4 +36,10 @@ Todos.TodosController = Ember.ArrayController.extend({
 		var remaining = this.get('remaining');
 		return remaining === 1 ? 'item' : 'items';
 	}.property('remaining'),
+	hasCompleted: function(){
+		return this.get('completed') > 0;
+	}.property('completed'),
+	completed: function(){
+		return this.filterBy('isCompleted', true).get('length');
+	}.property('@each.isCompleted') // @eachはスペシャルなもの
 });
