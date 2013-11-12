@@ -25,7 +25,8 @@ Todos.TodoController = Ember.ObjectController.extend({
 			todo.save(); // saveしないとember的には消えているがdatastoreからは消えていない状態になる
 		}
 	},
-	
+	isEditing: false,
+	format: "YYYY/MM/DD",
 	// key:"isCompleted" value: propertyがgetの時はundefined, setの時は値が入ってくる
 	isCompleted: function(key, value){
 		// thisはtodo一つ(Item)
@@ -40,5 +41,11 @@ Todos.TodoController = Ember.ObjectController.extend({
 			return value;
 		}
 	}.property('model.isCompleted'),
-	isEditing: false,
+
+	formattedDueDate: function(){
+		var dueDate = this.get('model').get('dueDate');
+		if(dueDate) {
+			return moment(dueDate).format(this.get('format'));
+		}
+	}.property('model.dueDate')
 });

@@ -66,7 +66,9 @@
             {{else}}
               {{input type="checkbox" checked=isCompleted class="toggle"}}
               <!-- action helper // 任意の要素に対してactionを発生させる場合に使う cf) input helper -->
-              <label {{action "editTodo" on="doubleClick"}}>{{title}}</label><button {{action "removeTodo"}} class="destroy"></button>
+              <label class="title" {{action "editTodo" on="doubleClick"}}>{{title}}</label>
+              <label class="due-date">Due: {{formattedDueDate}}</label>
+              <button {{action "removeTodo"}} class="destroy"></button>
             {{/if}}
           </li>
         {{/each}}
@@ -77,6 +79,7 @@
     <script src="js/libs/ember.js"></script>
     <script src="js/libs/ember-data.js"></script>
     <script src="js/libs/localstorage_adapter.js"></script>
+    <script src="js/libs/moment-with-langs.min.js"></script>    
     <script src="js/application.js"></script>
     <script src="js/router.js"></script>
     <script src="js/models/todo.js"></script>
