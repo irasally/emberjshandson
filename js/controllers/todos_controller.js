@@ -27,7 +27,16 @@ Todos.TodosController = Ember.ArrayController.extend({
 			completed.invoke('save');
 		}
 	},
-	
+
+	remainingChanged: function() {
+		var title = "Ember.js • TodoMVC";
+		if(this.get('remaining') > 0){
+			title = "(" + this.get('remaining') + ") " + title; 
+		}
+		// タイトルを変える
+        document.title = title;
+    }.observes('remaining').on('init'),
+
 	remaining: function(){
 		// 件数はlengthプロパティの値になる
 		return this.filterBy('isCompleted', false).get('length');
