@@ -19,7 +19,8 @@
             {{#if isEditing}}
               {{edit-list type="test" class="edit" value=name focus-out="saveList" insert-newline="saveList"}}
             {{else}}
-              <label {{action "editList" on="doubleClick"}}>{{name}}</label>
+              {{#link-to "todos.index" class="link"}}<label>{{name}}</label>{{/link-to}}
+              <button {{action "editList" on="click"}} class="doEdit"></button>
               <button {{action "removeList"}} class="destroy"></button>
             {{/if}}
           </li>
