@@ -10,12 +10,18 @@
     <section id="todoapp" class="list">
       <header id="header">
         <h1>lists</h1>
+        {{input type="text" id="new-list" placeholder="... Add new list" value=newListName action="createList"}}
       </header>
       <section id="main">
       <ul id="list-list">
-        {{#each}}
+        {{#each itemController="list"}}
           <li {{bind-attr class="isEditing:editing"}}>
-              <label>{{name}}</label>
+            {{#if isEditing}}
+              {{edit-list type="test" class="edit" value=name focus-out="saveList" insert-newline="saveList"}}
+            {{else}}
+              <label {{action "editList" on="doubleClick"}}>{{name}}</label>
+              <button {{action "removeList"}} class="destroy"></button>
+            {{/if}}
           </li>
         {{/each}}
       </ul>
@@ -109,7 +115,10 @@
     <script src="js/controllers/todos_controller.js"></script>
     <script src="js/controllers/todos_index_controller.js"></script>
     <script src="js/controllers/todo_controller.js"></script>
+    <script src="js/controllers/lists_controller.js"></script>
+    <script src="js/controllers/list_controller.js"></script>
     <script src="js/views/edit_title_view.js"></script>
     <script src="js/views/edit_duedate_view.js"></script>
+    <script src="js/views/edit_list_view.js"></script>
   </body>
 </html>
