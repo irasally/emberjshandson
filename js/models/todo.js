@@ -1,4 +1,5 @@
 Todos.Todo = DS.Model.extend({
+  list: DS.belongsTo('list'), // List has many todos
 	title: DS.attr('string'),
 	isCompleted: DS.attr('boolean'),
 	dueDate: DS.attr(),
@@ -15,24 +16,49 @@ Todos.Todo.FIXTURES = [
 	{
 		id: 1,
 		title: 'Learn Ember.js',
-		isCompleted: true,
-		dueDate: new Date(2013, 11, 13)
+		isCompleted: false,
+		dueDate: new Date(2013, 10, 13),
+    list: 1
 	},
 	{
 		id: 2,
-		title: '...',
-		isCompleted: false,
-		dueDate: new Date(2012, 11, 01)
+		title: 'しょうゆ',
+		isCompleted: true,
+		dueDate: new Date(2012, 10, 01),
+    list: 2
 	},
 	{
 		id: 3,
-		title: 'Profit!',
+		title: 'ブーツ',
 		isCompleted: false,
-		dueDate: new Date(2014, 01, 10)
+		dueDate: new Date(2014, 12, 10),
+    list: 2
 	},
 	{
 		id: 4,
-		title: 'にほんご',
+		title: 'Ruby on rails',
 		isCompleted: false,
+    list: 1
+	},
+	{
+		id: 5,
+		title: 'かぼちゃ',
+		isCompleted: true,
+		dueDate: new Date(2012, 11, 01),
+    list: 2
+	},
+	{
+		id: 6,
+		title: 'Learn Angular.js',
+		isCompleted: false,
+		dueDate: new Date(2014, 01, 10),
+    list: 1
+	},
+	{
+		id: 7,
+		title: 'Search Java8',
+		isCompleted: false,
+		dueDate: new Date(2014, 03, 05),
+    list: 1
 	}
 ];
