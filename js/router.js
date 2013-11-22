@@ -2,7 +2,7 @@
 //   どのテンプレートを使うかを決める
 //   このテンプレートで何のmodelを使うかを決める
 Todos.Router.map(function(){
-	this.resource('todos', {path: '/'}, function(){
+	this.resource('todos', {path: '/todos'}, function(){
 		// 第3引数を追加したタイミングで（中身が空でも）Routerの動きが変わる
 		//   Routes todos → todos.index ... dafault
 		//                → todos.active
@@ -16,6 +16,13 @@ Todos.Router.map(function(){
 		this.route('active');
 		this.route('completed');
 	});
+	this.resource('lists', {path: '/'});
+});
+
+Todos.ListsRoute = Ember.Route.extend({
+	model: function() {
+		return this.store.find('list'); // listモデルの全レコードを返す:小文字にするのが命名規則?
+	}
 });
 
 // 'todos'というrouteを踏んだ時にTodosRouteが参照される

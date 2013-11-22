@@ -57,6 +57,12 @@ body {
 	height: 100%;
 }
 
+.list:before {
+  /* 線を消したい */
+	border-left: none !important;
+	border-right: none !important;
+}
+
 #todoapp input::-webkit-input-placeholder {
 	font-style: italic;
 }
@@ -172,6 +178,31 @@ label[for='toggle-all'] {
 #toggle-all:checked:before {
 	color: #737373;
 }
+
+#list-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#list-list li {
+	position: relative;
+	font-size: 24px;
+	border-bottom: 1px dotted #ccc;
+}
+
+#list-list li label {
+	word-break: break-word;
+	margin-left: 5px;
+	display: block;
+	line-height: 2.0;
+	-webkit-transition: color 0.4s;
+	-moz-transition: color 0.4s;
+	-ms-transition: color 0.4s;
+	-o-transition: color 0.4s;
+	transition: color 0.4s;
+}
+
 
 #todo-list {
 	margin: 0;

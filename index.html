@@ -6,6 +6,25 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    <script type="text/x-handlebars" data-template-name="lists">
+    <section id="todoapp" class="list">
+      <header id="header">
+        <h1>lists</h1>
+      </header>
+      <section id="main">
+      <ul id="list-list">
+        {{#each}}
+          <li {{bind-attr class="isEditing:editing"}}>
+              <label>{{name}}</label>
+          </li>
+        {{/each}}
+      </ul>
+
+      </section>
+    </section>
+    </script>
+
+
     <script type="text/x-handlebars" data-template-name="todos">
     <section id="todoapp">
       <header id="header">
@@ -45,10 +64,10 @@
         {{/if}}
       </footer>
     </section>
-    
     <footer id="info">
     </footer>
-    </script>    
+    </script>
+    <!-- Template -->
     <script type="text/x-handlebars" data-template-name="todos/index">
       <ul id="todo-list">
       <!-- // #each thisの省略 this(Array)からはtodo modelの中身1件を取出して処理-->
