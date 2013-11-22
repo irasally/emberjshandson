@@ -15,6 +15,8 @@ Todos.ListController = Ember.ObjectController.extend({
 			var list = this.get('model');
 			list.deleteRecord();
 			list.save(); // saveしないとember的には消えているがdatastoreからは消えていない状態になる
-		}
+		},
+    addTodo: function(){
+    }
 	}
 });

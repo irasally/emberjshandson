@@ -575,3 +575,12 @@ label[for='toggle-all'] {
 .hidden{
 	display:none;
 }
+
+a.back {
+  text-decoration: none;
+  color: #3d3d3d;
+}
+a.back:hover {
+  text-decoration: none;
+  color: #5c5c5c;
+}
