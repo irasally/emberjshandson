@@ -17,11 +17,28 @@ Todos.Router.map(function(){
 		this.route('completed');
 	});
 	this.resource('lists', {path: '/'});
+	this.resource('list', {path: '/:list_id'}, function(){
+  });
 });
 
 Todos.ListsRoute = Ember.Route.extend({
 	model: function() {
 		return this.store.find('list'); // listモデルの全レコードを返す:小文字にするのが命名規則?
+	}
+});
+
+Todos.ListRoute = Ember.Route.extend({
+	model: function(params) {
+		return this.store.find('list', params.list_id); // listモデルの全レコードを返す:小文字にするのが命名規則?
+	}
+});
+
+Todos.ListIndexRoute = Ember.Route.extend({
+	model: function(){
+		return this.modelFor(('list'));
+	},
+	renderTemplate: function(){
+		this.render('list/todos');
 	}
 });
 

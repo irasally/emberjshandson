@@ -17,8 +17,7 @@ Todos.Todo.FIXTURES = [
 		id: 1,
 		title: 'Learn Ember.js',
 		isCompleted: false,
-		dueDate: new Date(2013, 10, 13),
-    list: 1
+		dueDate: new Date(2013, 10, 13)
 	},
 	{
 		id: 2,
@@ -37,8 +36,7 @@ Todos.Todo.FIXTURES = [
 	{
 		id: 4,
 		title: 'Ruby on rails',
-		isCompleted: false,
-    list: 1
+		isCompleted: false
 	},
 	{
 		id: 5,
@@ -51,14 +49,12 @@ Todos.Todo.FIXTURES = [
 		id: 6,
 		title: 'Learn Angular.js',
 		isCompleted: false,
-		dueDate: new Date(2014, 01, 10),
-    list: 1
+		dueDate: new Date(2014, 01, 10)
 	},
 	{
 		id: 7,
 		title: 'Search Java8',
 		isCompleted: false,
-		dueDate: new Date(2014, 03, 05),
-    list: 1
+		dueDate: new Date(2014, 03, 05)
 	}
 ];
