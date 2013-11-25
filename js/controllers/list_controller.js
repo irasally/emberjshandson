@@ -5,10 +5,10 @@ Todos.ListController = Ember.ObjectController.extend({
 			this.set('isEditing', true);
 		},
     saveList: function(){
-			var model = this.get('model');
-			if(!Ember.isEmpty(model.get('name'))) {
+			var list = this.get('model');
+			if(!Ember.isEmpty(list.get('name'))) {
     	  this.set('isEditing', false);
-        model.save();
+        list.save();
       }
 		},
 		removeList: function(){
