@@ -55,5 +55,17 @@ Todos.ListController = Ember.ObjectController.extend({
 		return remaining === 1 ? 'item' : 'items';
 	}.property('remaining'),
 
+	remainingChanged: function() {
+		var model = this.get('model');
+    if(!model) return;
+    var remaining = this.get('remaining');
+		var title;
+		if(remaining){
+			title = "(%@) Ember.js • TodoMVC".fmt(remaining); 
+		} else {
+			title = "Ember.js • TodoMVC"; 
+		}
+     window.document.title = title;
+  }.observes('remaining').on('init'),
 
 });
