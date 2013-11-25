@@ -21,13 +21,22 @@ Todos.ListController = Ember.ObjectController.extend({
 	},
 
 	completed: function(){
-    console.log(this.get('model').get('todos').filterBy('isCompleted', true));
-		return this.get('model').get('todos').filterBy('isCompleted', true).get('length');
+    var todos = this.get('model').get('todos'); 
+		return todos.filterBy('isCompleted', true).get('length');
 	}.property('model.todos.@each.isCompleted'),
 
 	hasCompleted: function(){
-    console.log(this.get('completed'));
 		return this.get('completed') > 0;
-	}.property('completed')
+	}.property('completed'),
+
+	remaining: function(){
+    var todos = this.get('model').get('todos'); 
+		return todos.filterBy('isCompleted', false).get('length');
+	}.property('model.todos.@each.isCompleted'),
+	
+	inflection: function(){
+		var remaining = this.get('remaining');
+		return remaining === 1 ? 'item' : 'items';
+	}.property('remaining')
 
 });
