@@ -17,6 +17,22 @@ Todos.ListController = Ember.ObjectController.extend({
 			list.save(); // saveしないとember的には消えているがdatastoreからは消えていない状態になる
 		},
     addTodo: function(){
+			var title = this.get('newTitle');
+			if(!title.trim()){return;}
+	    // create the new Todo model
+	    var todo = this.store.createRecord('todo', {
+	    	title: title,
+	     	isCompleted: false,
+	    });
+	    todo.save();
+      // list add new todo
+			var list = this.get('model');
+      list.get('todos').pushObject(todo);
+      list.save();
+      console.log('List Save');
+      console.log(this.get('model').get('todos').get('length'));
+	    // text field clear
+	    this.set('newTitle', '');
     }
 	},
 
