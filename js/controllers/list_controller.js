@@ -18,5 +18,16 @@ Todos.ListController = Ember.ObjectController.extend({
 		},
     addTodo: function(){
     }
-	}
+	},
+
+	completed: function(){
+    console.log(this.get('model').get('todos').filterBy('isCompleted', true));
+		return this.get('model').get('todos').filterBy('isCompleted', true).get('length');
+	}.property('model.todos.@each.isCompleted'),
+
+	hasCompleted: function(){
+    console.log(this.get('completed'));
+		return this.get('completed') > 0;
+	}.property('completed')
+
 });
