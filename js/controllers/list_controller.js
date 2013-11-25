@@ -73,4 +73,15 @@ Todos.ListController = Ember.ObjectController.extend({
      window.document.title = title;
   }.observes('remaining').on('init'),
 
+	allAreDone: function(key, value){
+		if(value === undefined){
+      var todos = this.get('todos');
+		  return !!todos.get('length') && todos.everyBy('isCompleted', true);
+		} else {
+			this.get('todos').setEach('isCompleted', value);
+			this.get('todos').invoke('save');
+			return value;
+		}
+	}.property('model.todos.@each.isCompleted')
+
 });
