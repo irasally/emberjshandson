@@ -32,10 +32,8 @@ Todos.TodoController = Ember.ObjectController.extend({
 			var model = this.get('model');
 			if(dueDate.isValid()){
         model.set('dueDate', moment(inputDate)._d);
-        model.set('hasDueDate', -1);
 			} else {
 				model.set('dueDate', null);
-        model.set('hasDueDate', 99999999);
 			}
 			model.save();
 		},

@@ -10,7 +10,7 @@ Todos.Todo = DS.Model.extend({
 		} else {
 			return 99999999;
 		}
-	}.property('model.dueDate')
+	}.property('dueDate')
 });
 Todos.Todo.FIXTURES = [
 	{
