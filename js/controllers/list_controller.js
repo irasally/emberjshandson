@@ -29,8 +29,6 @@ Todos.ListController = Ember.ObjectController.extend({
 			var list = this.get('model');
       list.get('todos').pushObject(todo);
       list.save();
-      console.log('List Save');
-      console.log(this.get('model').get('todos').get('length'));
 	    // text field clear
 	    this.set('newTitle', '');
     },
