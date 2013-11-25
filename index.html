@@ -50,15 +50,15 @@
         <ul id="filters">
           <li>
             <!-- todos と todos.index では activeClassの動きが変わる -->
-            {{#link-to "todos.index" activeClass="selected"}}All{{/link-to}}
+            {{#link-to "list.index" activeClass="selected"}}All{{/link-to}}
           </li>
           <li>
             <!-- //link-to 第一引数はRoute名 -->
             <!-- index.html#/active となる -->
-            {{#link-to "todos.active" activeClass="selected"}}Active{{/link-to}}
+            {{#link-to "list.active" activeClass="selected"}}Active{{/link-to}}
           </li>
           <li>
-            {{#link-to "todos.completed" activeClass="selected"}}Completed{{/link-to}}
+            {{#link-to "list.completed" activeClass="selected"}}Completed{{/link-to}}
           </li>
         </ul>
         {{#if hasCompleted}}
@@ -115,6 +115,8 @@
     <script src="js/controllers/lists_controller.js"></script>
     <script src="js/controllers/list_controller.js"></script>
     <script src="js/controllers/list_index_controller.js"></script>
+    <script src="js/controllers/list_active_controller.js"></script>
+    <script src="js/controllers/list_completed_controller.js"></script>
     <script src="js/views/edit_title_view.js"></script>
     <script src="js/views/edit_duedate_view.js"></script>
     <script src="js/views/edit_list_view.js"></script>
