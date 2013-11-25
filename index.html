@@ -76,7 +76,7 @@
     <script type="text/x-handlebars" data-template-name="list/todos">
       <ul id="todo-list">
       <!-- // #each thisの省略 this(Array)からはtodo modelの中身1件を取出して処理-->
-        {{#each todos itemController="todo"}}
+        {{#each sortedTodos itemController="todo"}}
         <!-- // htmlの構造を壊さないようにするためにbind-attrを使っている -->
         <!-- //    falseの時にimcompletedにする方法: isCompleted:completed:incompleted -->
         <!-- //    falseのだけimcompletedにする方法: isCompleted::incompleted -->
@@ -116,6 +116,7 @@
     <script src="js/controllers/todo_controller.js"></script>
     <script src="js/controllers/lists_controller.js"></script>
     <script src="js/controllers/list_controller.js"></script>
+    <script src="js/controllers/list_index_controller.js"></script>
     <script src="js/views/edit_title_view.js"></script>
     <script src="js/views/edit_duedate_view.js"></script>
     <script src="js/views/edit_list_view.js"></script>

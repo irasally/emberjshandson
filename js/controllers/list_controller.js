@@ -37,6 +37,7 @@ Todos.ListController = Ember.ObjectController.extend({
 	inflection: function(){
 		var remaining = this.get('remaining');
 		return remaining === 1 ? 'item' : 'items';
-	}.property('remaining')
+	}.property('remaining'),
+
 
 });
