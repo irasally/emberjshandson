@@ -33,7 +33,14 @@ Todos.ListController = Ember.ObjectController.extend({
       console.log(this.get('model').get('todos').get('length'));
 	    // text field clear
 	    this.set('newTitle', '');
-    }
+    },
+		clearCompleted: function(){
+			var completed = this.get('todos').filterBy('isCompleted', true);
+			completed.invoke('deleteRecord');
+			completed.invoke('save');
+      this.get('todos').removeObjects(completed);
+      this.get('model').save();
+		}
 	},
 
 	completed: function(){
